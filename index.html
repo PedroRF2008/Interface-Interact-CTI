@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Center Interface</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Roboto+Mono&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div id="login-container" style="display: flex;">
+            <h1><i class="fas fa-headset"></i> Login</h1>
+            <form id="login-form">
+                <div class="input-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="agent" placeholder="Agente" required>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="password" placeholder="Senha" required>
+                </div>
+                <div class="input-group url-group">
+                    <i class="fas fa-link"></i>
+                    <input type="text" id="base-ip" placeholder="IP do servidor" required>
+                    <span class="separator">:</span>
+                    <input type="text" id="base-port" placeholder="Porta" value="8582" required>
+                </div>
+                <button type="submit" class="btn-primary"><i class="fas fa-sign-in-alt"></i> Entrar</button>
+            </form>
+        </div>
+        <div id="main-container" style="display: none;">
+            <h1>Bem-vindo, <span id="agent-name"></span>!</h1>
+            <main>
+                <div id="left-panel">
+                    <section id="state-section">
+                        <h2>Estado Atual: <span id="current-state">Carregando...</span></h2>
+                        <div id="state-controls">
+                            <button id="available-btn" class="btn-primary"><i class="fas fa-check-circle"></i> Disponível</button>
+                            <button id="pause-btn" class="btn-secondary"><i class="fas fa-pause-circle"></i> Pausar</button>
+                        </div>
+                        <div id="pause-menu" style="display: none;">
+                            <h3>Selecione o motivo da pausa:</h3>
+                            <select id="pause-reason">
+                                <!-- Opções de pausa serão adicionadas dinamicamente via JavaScript -->
+                            </select>
+                            <button id="confirm-pause-btn" class="btn-primary">Confirmar Pausa</button>
+                        </div>
+                    </section>
+                    <section id="call-section" class="hidden">
+                        <h2>Chamada</h2>
+                        <div id="call-info"></div>
+                        <div id="call-buttons"></div>
+                        <div id="call-data">
+                            <input type="text" id="associated-data" maxlength="100" placeholder="Dados associados (max 100 caracteres)">
+                            <button id="associate-data-btn">Associar Dados</button>
+                        </div>
+                    </section>
+                </div>
+                <div id="right-panel">
+                    <div id="event-log">
+                        <div class="event-log-header">
+                            <h2>Console de Eventos</h2>
+                            <div id="connection-status-container">
+                                <div id="connection-status">Desconectado</div>
+                                <div id="heartbeat-timer"></div>
+                            </div>
+                        </div>
+                        <div id="log-container"></div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/svg.js/3.1.2/svg.min.js"></script>
+    <script src="https://kit.fontawesome.com/39f2a12ca5.js" crossorigin="anonymous"></script>
+    <script>
+        // Verifica se o SVG.js foi carregado corretamente
+        if (typeof SVG !== 'function') {
+            console.warn('SVG.js não foi carregado. Usando fallback em HTML.');
+        }
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
